@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+#define IN 1
+#define OUT 0
+int main()
+{
+    int c, prev, state, i;
+    while ((c = getchar()) != EOF)
+    {
+        if (li)
+        {
+             
+        }
+
+
+        putchar(c);
+
+    }
+    return 0;
+
+}
