@@ -1,16 +1,26 @@
 #include<stdio.h>
-#include<fcntl.h>
-#include<unistd.h>
 int main(int argc, char *argv[])
 {
+    int c;
     if (argc != 2)
     {
-        printf("error");
+        printf("%s: Requires a file\n", argv[0]);
         return 1;
     }
-    int file_descriptor = open(argv[1], O_RDONLY);
-    printf("%d\n", file_descriptor);
-    ssize_t readed_bytes_num = read(file_descriptor);
+    FILE *file = fopen(argv[1], "r"); // path + mode (r  = readonly)
+    if (file ==  0)
+    {
+        printf("%s: %s: No such file or directory\n", argv[0], argv[1]);
+        return 1;
+    }
 
+        
+    while ((c = fgetc(file)) != EOF)
+    {
+        printf("%c", c);
+    }
+
+    fclose(file);
     return 0;
+
 }
