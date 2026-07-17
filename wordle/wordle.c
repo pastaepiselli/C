@@ -18,6 +18,20 @@ int main(int, char *[]);
 Result check_char(char, int, char*);
 Result* check_word(char *guess, char *word);
 
+
+int read_file(char *filename, int max)
+{
+    char buf[8];
+    int i;
+    FILE *file_descriptor;
+
+    file_descriptor = fopen(filename, "r");
+    if (!file_descriptor){
+        perror("fopen");
+        return -1;
+    }
+}
+
 void Example_print_result(Result *res)
 {
     int i;
@@ -83,14 +97,14 @@ int main(int argc, char *argv[])
     char *correct, *guess;
     Result *res;
     if (argc < 3){
-        fprintf(stderr, "Usage: %s CORRECTGUESSWORD\n", argv[0]);
+        fprintf(stderr, "Usage: %s correct word, guess word\n", argv[0]);
         return -1;
     }
 
     correct = argv[1];
     guess = argv[2];
 
-    res = check_word(correct, guess);
+    res = check_word(guess, correct);
     Example_print_result(res);
     return 0;
 }
