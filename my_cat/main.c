@@ -11,10 +11,12 @@ int main(int argc, char *argv[])
     if (file ==  0)
     {
         printf("%s: %s: No such file or directory\n", argv[0], argv[1]);
+        fclose(file);
         return 1;
     }
 
-        
+    printf("%s\n", argv[1][-1]); 
+
     while ((c = fgetc(file)) != EOF)
     {
         printf("%c", c);

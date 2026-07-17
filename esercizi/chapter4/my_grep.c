@@ -38,5 +38,7 @@ int getline(char line[], int max)
 
 int strindex(char source[], char searchfor[])
 {
+    int i, j, k;
+
 
 }
