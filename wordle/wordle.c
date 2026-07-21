@@ -19,17 +19,28 @@ Result check_char(char, int, char*);
 Result* check_word(char *guess, char *word);
 
 
-int read_file(char *filename, int max)
+char** read_file(char *filename, int max)
 {
     char buf[8];
-    int i;
+    int i, size;
     FILE *file_descriptor;
+    // array di stringhe
+    char **ret;
 
     file_descriptor = fopen(filename, "r");
     if (!file_descriptor){
         perror("fopen");
-        return -1;
+        return (char **) 0;
     }
+
+    size = max * 5; // 5 bytes * ogni riga del file
+    ret = (char **)malloc(size);
+    if (!ret){
+        fclose(fd);
+        perror("malloc");
+    }
+
+    fgets(buf, 7);
 }
 
 void Example_print_result(Result *res)
