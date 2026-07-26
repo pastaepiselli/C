@@ -1,6 +1,7 @@
 /* copia del comando head che ritorna la prima parte di un file in input*/
 #include<stdio.h>
 #include<unistd.h>
+#include<stdlib.h>
 
 
 int maxlines;
@@ -18,11 +19,12 @@ void getarguments(int argc, char *argv[])
         switch(opt)
         {
             case 'n':
-                maxlines = (int)optarg;
+                maxlines = atoi(optarg);
                 break;
             
             default:
                 printf("Usage sbagliato");
+                break;
         }
     }
 
@@ -32,24 +34,29 @@ void getarguments(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
 
-    int c, n;
+    int c;
     int count_lines;
-    FILE *file;
+    FILE *file = stdin;
+    maxlines = 10;
+
     getarguments(argc, argv);
 
-    n = 10;
-    file = fopen(argv[3], "r");
+
+    file = fopen(argv[optind], "r");
     
     while ((c = fgetc(file)) != EOF)
     {
         if (c == '\n')
             count_lines++;
     
-        if (count_lines == n)
+        if (count_lines == maxlines)
             break;
     
-        printf("%c", c);
+        putchar(c);
     }
+
+    putchar('\n');
+    fclose(file);
 
     return 0;
 }
